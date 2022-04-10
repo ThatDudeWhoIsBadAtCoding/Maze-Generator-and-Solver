@@ -13,6 +13,10 @@ function setup(){
 	clr_r = parseInt(urlParams.get('r')) || 0;
 	clr_g = parseInt(urlParams.get('g')) || 100;
 	clr_b = parseInt(urlParams.get('b')) || 255;
+	size = constrain(size, 1, 80);
+    	clr_r = constrain(clr_r, 0, 255);
+    	clr_g = constrain(clr_g, 0, 255);
+    	clr_b = constrain(clr_b, 0, 255);
 	
 	document.getElementById("maze_s").value = size;
 	document.getElementById("clr_r").value = clr_r;
