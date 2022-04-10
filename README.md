@@ -15,7 +15,8 @@ The **dist()** function calculates the distance between two points
 
 <img src="https://user-images.githubusercontent.com/90434651/162615581-ff67e55e-b4a6-47f6-94e7-ddb1dd790116.png" width = 300 height = 300>
 
-**Credit to my friend for making the GUI**
+***Credit to my friend for making the GUI***
+
 Click on the **Generate** button to generate a maze with your inputted values
 
 Here is an image of cell size 10 with its solution
