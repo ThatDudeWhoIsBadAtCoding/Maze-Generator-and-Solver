@@ -1,5 +1,6 @@
 # Maze-Generator-and-Solver
 A* and Recursive Backtracking magic :D
+
 **Starting Point is Top-left, ending point is Bottom-Right**
 
 Uses p5.js framework for the canvas and dist function, didn't feel like coding those
