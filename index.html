@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maze Gen</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.min.js"></script>
-    <script src="sketch.js"></script>
+    <script src="old.js"></script>
 </head>
 <body>
-<div class="div">
+<div class="div" id="settingsMenu">
 <h2 class="padded" style="text-align:center">Settings</h2>
   <label class="padded" for="maze_s">Cell Size:</label>
   <input type="text" id="maze_s" name="maze_s" value="20"><br>
@@ -24,6 +24,9 @@
 <button class="padded" onclick="settings()" style="width:80px; height:30px;">Generate</button>
 <button class="padded" onclick="solve()" id="solve" style="width:80px; height:30px;">Solve</button><br><br>
 </div>
+<br>
+<button class="padded" onclick="hide()" id="hide" style="width:100px; height:40px;">Hide Settings</button>
+<button class="padded" onclick="show()" id="show" style="width:100px; height:40px;">Show Settings</button>
 <br><br>
 </body>
 <style>
@@ -38,9 +41,12 @@ margin-left:20px;
 }
 .div{
 width:35%;
+height:300px;
 background-color:#EEE;
 border-radius:20px;
 border: 1px solid black;
+overflow: hidden;
+transition: all 1s ease;
 }
 </style>
 </html>
