@@ -91,11 +91,11 @@ function settings()
     let r = document.getElementById("clr_r").value;
     let g = document.getElementById("clr_g").value;
     let b = document.getElementById("clr_b").value;
-    size = constrain(size, 1, 80);
+    size = constrain(size, 5, 80);
     r = constrain(r, 0, 255);
     g = constrain(g, 0, 255);
     b = constrain(b, 0, 255);
-	window.location.replace(removeParams(window.location) + "?size="+size+"&r="+clr_r+"&g="+clr_g+"&b="+clr_b);
+	window.location.replace(removeParams(window.location) + "?size="+size+"&r="+r+"&g="+g+"&b="+b);
 }
 
 function removeParams()
