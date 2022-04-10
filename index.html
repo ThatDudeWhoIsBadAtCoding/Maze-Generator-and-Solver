@@ -12,14 +12,14 @@
 <div class="div" id="settingsMenu">
 <h2 class="padded" style="text-align:center">Settings</h2>
   <label class="padded" for="maze_s">Cell Size:</label>
-  <input type="text" id="maze_s" name="maze_s" value="20"><br>
+  <input type="number" max="80" min="1" id="maze_s" name="maze_s" value="20"><br>
   <p class="padded">Cell Color:</p>
   <label class="extrapadded" for "clr_r">R</label>
-  <input type="text" id="clr_r" name="clr_r" value="0">
+  <input type="number" max="255" min="0" id="clr_r" name="clr_r" value="0">
   <label class="padded" for "clr_g">G</label>
-  <input type="text" id="clr_g" name="clr_g" value="100">
+  <input type="number" max="255" min="0" id="clr_g" name="clr_g" value="100">
   <label class="padded" for "clr_b">B</label>
-  <input type="text" id="clr_b" name="clr_b" value ="255"><br><hr>
+  <input type="number" max="255" min="0" id="clr_b" name="clr_b" value ="255"><br><hr>
 <h2 class="padded" style="text-align:center">Controls</h2>
 <button class="padded" onclick="settings()" style="width:80px; height:30px;">Generate</button>
 <button class="padded" onclick="solve()" id="solve" style="width:80px; height:30px;">Solve</button><br><br>
