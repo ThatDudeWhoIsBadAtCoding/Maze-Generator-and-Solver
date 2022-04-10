@@ -1,4 +1,4 @@
-let size = 20;
+let size = 50;
 let maze;
 let clr_r = 0;
 let clr_g = 100;
@@ -9,23 +9,44 @@ function setup(){
 	
 	const urlParams = new URLSearchParams(window.location.search)
 
-	size = urlParams.get('arg1') || 20;
-	clr_r = urlParams.get('arg2') || 0;
-	clr_g = urlParams.get('arg3') || 100;
-	clr_b = urlParams.get('arg4') || 255;
+	size = parseInt(urlParams.get('size')) || 20;
+	clr_r = urlParams.get('r') || 0;
+	clr_g = urlParams.get('g') || 100;
+	clr_b = urlParams.get('b') || 255;
 	
 	document.getElementById("maze_s").value = size;
 	document.getElementById("clr_r").value = clr_r;
 	document.getElementById("clr_g").value = clr_g;
 	document.getElementById("clr_b").value = clr_b;
 	
-    let rows = floor(width/size), cols = floor(height/size);
-	maze = new Maze(size, rows, cols);
+	let rows = floor(width/size), cols = floor(height/size);
+    maze = new Maze(size, rows, cols);
     //frameRate(30)
     maze.start = maze.current = maze.cells[0];
     maze.end = maze.cells[maze.cells.length-1];
     maze.openSet.push(maze.start);
+	
+	document.getElementById("show").disabled = true;
 	document.getElementById("solve").disabled = true;
+}
+
+function hide()
+{
+	document.getElementById("settingsMenu").style.width = "0%";
+	document.getElementById("settingsMenu").style.height = "0px";
+	document.getElementById("settingsMenu").style.borderRadius = "0px";
+	document.getElementById("settingsMenu").style.border = "0px solid black";
+	document.getElementById("hide").disabled = true;
+	document.getElementById("show").disabled = false;
+}
+function show()
+{
+	document.getElementById("settingsMenu").style.width = "35%";
+	document.getElementById("settingsMenu").style.height = "300px";
+	document.getElementById("settingsMenu").style.borderRadius = "20px";
+		document.getElementById("settingsMenu").style.border = "1px solid black";
+	document.getElementById("show").disabled = true;
+	document.getElementById("hide").disabled = false;
 }
 
 function draw(){
@@ -47,28 +68,8 @@ function draw(){
     }
     if(maze.stack.length <= 0){
         noLoop();
-        //maze.aStar();
-		document.getElementById("solve").disabled = false;
+        maze.aStar();
     }
-}
-
-function settings()
-{
-	window.location.replace(removeParams(window.location) + "?arg1="+parseInt(document.getElementById("maze_s").value)+"&arg2="+parseInt(document.getElementById("clr_r").value)+"&arg3="+parseInt(document.getElementById("clr_g").value)+"&arg4="+parseInt(document.getElementById("clr_b").value));
-}
-
-function removeParams()
-{
-    return window.location.href.split('?')[0];
-}
-
-function solve()
-{
-	if(maze.stack.length<=0)
-	{
-		maze.aStar();
-		document.getElementById("solve").disabled = true;
-	}
 }
 
 function index(i, j){
@@ -76,6 +77,16 @@ function index(i, j){
         return -1;
     }
     return i + j * maze.cols;
+}
+
+function settings()
+{
+	window.location.replace(removeParams(window.location) + "?size="+parseInt(document.getElementById("maze_s").value)+"&r="+parseInt(document.getElementById("clr_r").value)+"&g="+parseInt(document.getElementById("clr_g").value)+"&b="+parseInt(document.getElementById("clr_b").value));
+}
+
+function removeParams()
+{
+    return window.location.href.split('?')[0];
 }
 
 class Cell{
