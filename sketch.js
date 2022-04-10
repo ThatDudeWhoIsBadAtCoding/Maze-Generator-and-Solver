@@ -7,19 +7,19 @@ let clr_b = 255;
 function setup(){
     createCanvas(400, 400);
 	
-    const urlParams = new URLSearchParams(window.location.search)
+	const urlParams = new URLSearchParams(window.location.search)
 
-    size = parseInt(urlParams.get('size')) || 20;
-    clr_r = parseInt(urlParams.get('r')) || 0;
-    clr_g = parseInt(urlParams.get('g')) || 100;
-    clr_b = parseInt(urlParams.get('b')) || 255;
+	size = parseInt(urlParams.get('size')) || 20;
+	clr_r = parseInt(urlParams.get('r')) || 0;
+	clr_g = parseInt(urlParams.get('g')) || 100;
+	clr_b = parseInt(urlParams.get('b')) || 255;
 	
-    document.getElementById("maze_s").value = size;
-    document.getElementById("clr_r").value = clr_r;
-    document.getElementById("clr_g").value = clr_g;
-    document.getElementById("clr_b").value = clr_b;
+	document.getElementById("maze_s").value = size;
+	document.getElementById("clr_r").value = clr_r;
+	document.getElementById("clr_g").value = clr_g;
+	document.getElementById("clr_b").value = clr_b;
 	
-    let rows = floor(width/size), cols = floor(height/size);
+	let rows = floor(width/size), cols = floor(height/size);
     maze = new Maze(size, rows, cols);
     //frameRate(30)
     maze.start = maze.current = maze.cells[0];
@@ -44,7 +44,7 @@ function show()
 	document.getElementById("settingsMenu").style.width = "35%";
 	document.getElementById("settingsMenu").style.height = "300px";
 	document.getElementById("settingsMenu").style.borderRadius = "20px";
-		document.getElementById("settingsMenu").style.border = "1px solid black";
+	document.getElementById("settingsMenu").style.border = "1px solid black";
 	document.getElementById("show").disabled = true;
 	document.getElementById("hide").disabled = false;
 }
@@ -68,8 +68,14 @@ function draw(){
     }
     if(maze.stack.length <= 0){
         noLoop();
-        maze.aStar();
+		document.getElementById("solve").disabled = false;
     }
+}
+
+function solve()
+{
+	maze.aStar();
+	document.getElementById("solve").disabled = true;
 }
 
 function index(i, j){
