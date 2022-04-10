@@ -5,9 +5,6 @@ Uses p5.js framework for the canvas and dist function, didn't feel like coding t
 
 Just open index.html in browser to run!
 
-Change the commented out **frameRate()** function to change the maze generation speed on line ~~8~~ 24 of sketch.js
-
-~~As for anybody wondering, the **dist()** function calculates the hypotenuse (distance between end and current cell) of a right angled triangle,
-moves the x down to the level of end, then draws a triangle and calculates the hypotenuse~~
+Change the commented out **frameRate()** function to change the maze generation speed on line 24 of sketch.js
 
 The **dist()** function calculates the distance between two points
