@@ -25,6 +25,28 @@ function setup(){
     maze.start = maze.current = maze.cells[0];
     maze.end = maze.cells[maze.cells.length-1];
     maze.openSet.push(maze.start);
+	
+	document.getElementById("show").disabled = true;
+	document.getElementById("solve").disabled = true;
+}
+
+function hide()
+{
+	document.getElementById("settingsMenu").style.width = "0%";
+	document.getElementById("settingsMenu").style.height = "0px";
+	document.getElementById("settingsMenu").style.borderRadius = "0px";
+	document.getElementById("settingsMenu").style.border = "0px solid black";
+	document.getElementById("hide").disabled = true;
+	document.getElementById("show").disabled = false;
+}
+function show()
+{
+	document.getElementById("settingsMenu").style.width = "35%";
+	document.getElementById("settingsMenu").style.height = "300px";
+	document.getElementById("settingsMenu").style.borderRadius = "20px";
+		document.getElementById("settingsMenu").style.border = "1px solid black";
+	document.getElementById("show").disabled = true;
+	document.getElementById("hide").disabled = false;
 }
 
 function draw(){
