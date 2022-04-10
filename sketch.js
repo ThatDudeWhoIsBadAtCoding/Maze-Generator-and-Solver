@@ -7,19 +7,19 @@ let clr_b = 255;
 function setup(){
     createCanvas(400, 400);
 	
-	const urlParams = new URLSearchParams(window.location.search)
+    const urlParams = new URLSearchParams(window.location.search)
 
-	size = parseInt(urlParams.get('size')) || 20;
-	clr_r = urlParams.get('r') || 0;
-	clr_g = urlParams.get('g') || 100;
-	clr_b = urlParams.get('b') || 255;
+    size = parseInt(urlParams.get('size')) || 20;
+    clr_r = parseInt(urlParams.get('r')) || 0;
+    clr_g = parseInt(urlParams.get('g')) || 100;
+    clr_b = parseInt(urlParams.get('b')) || 255;
 	
-	document.getElementById("maze_s").value = size;
-	document.getElementById("clr_r").value = clr_r;
-	document.getElementById("clr_g").value = clr_g;
-	document.getElementById("clr_b").value = clr_b;
+    document.getElementById("maze_s").value = size;
+    document.getElementById("clr_r").value = clr_r;
+    document.getElementById("clr_g").value = clr_g;
+    document.getElementById("clr_b").value = clr_b;
 	
-	let rows = floor(width/size), cols = floor(height/size);
+    let rows = floor(width/size), cols = floor(height/size);
     maze = new Maze(size, rows, cols);
     //frameRate(30)
     maze.start = maze.current = maze.cells[0];
