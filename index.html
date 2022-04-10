@@ -9,6 +9,38 @@
     <script src="sketch.js"></script>
 </head>
 <body>
-    
+<div class="div">
+<h2 class="padded" style="text-align:center">Settings</h2>
+  <label class="padded" for="maze_s">Cell Size:</label>
+  <input type="text" id="maze_s" name="maze_s" value="20"><br>
+  <p class="padded">Cell Color:</p>
+  <label class="extrapadded" for "clr_r">R</label>
+  <input type="text" id="clr_r" name="clr_r" value="0">
+  <label class="padded" for "clr_g">G</label>
+  <input type="text" id="clr_g" name="clr_g" value="100">
+  <label class="padded" for "clr_b">B</label>
+  <input type="text" id="clr_b" name="clr_b" value ="255"><br><hr>
+<h2 class="padded" style="text-align:center">Controls</h2>
+<button class="padded" onclick="settings()" style="width:80px; height:30px;">Generate</button>
+<button class="padded" onclick="solve()" id="solve" style="width:80px; height:30px;">Solve</button><br><br>
+</div>
+<br><br>
 </body>
+<style>
+.padded{
+margin-left:5px;
+font-weight:600;
+}
+.extrapadded
+{
+font-weight:600;
+margin-left:20px;
+}
+.div{
+width:35%;
+background-color:#EEE;
+border-radius:20px;
+border: 1px solid black;
+}
+</style>
 </html>

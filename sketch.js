@@ -1,20 +1,37 @@
-const size = 20;
+let size = 20;
 let maze;
+let clr_r = 0;
+let clr_g = 100;
+let clr_b = 255;
 
 function setup(){
     createCanvas(400, 400);
+	
+	const urlParams = new URLSearchParams(window.location.search)
+
+	size = urlParams.get('arg1') || 20;
+	clr_r = urlParams.get('arg2') || 0;
+	clr_g = urlParams.get('arg3') || 100;
+	clr_b = urlParams.get('arg4') || 255;
+	
+	document.getElementById("maze_s").value = size;
+	document.getElementById("clr_r").value = clr_r;
+	document.getElementById("clr_g").value = clr_g;
+	document.getElementById("clr_b").value = clr_b;
+	
     let rows = floor(width/size), cols = floor(height/size);
-    maze = new Maze(size, rows, cols);
+	maze = new Maze(size, rows, cols);
     //frameRate(30)
     maze.start = maze.current = maze.cells[0];
     maze.end = maze.cells[maze.cells.length-1];
     maze.openSet.push(maze.start);
+	document.getElementById("solve").disabled = true;
 }
 
 function draw(){
     background(51)
     for(let i = 0; i < maze.cells.length; i++){
-        maze.cells[i].show();
+        maze.cells[i].show(color(clr_r,clr_g,clr_b,100));
     }
     maze.current.visited = true;
     maze.current.highlight();
@@ -30,8 +47,28 @@ function draw(){
     }
     if(maze.stack.length <= 0){
         noLoop();
-        maze.aStar();
+        //maze.aStar();
+		document.getElementById("solve").disabled = false;
     }
+}
+
+function settings()
+{
+	window.location.replace(removeParams(window.location) + "?arg1="+parseInt(document.getElementById("maze_s").value)+"&arg2="+parseInt(document.getElementById("clr_r").value)+"&arg3="+parseInt(document.getElementById("clr_g").value)+"&arg4="+parseInt(document.getElementById("clr_b").value));
+}
+
+function removeParams()
+{
+    return window.location.href.split('?')[0];
+}
+
+function solve()
+{
+	if(maze.stack.length<=0)
+	{
+		maze.aStar();
+		document.getElementById("solve").disabled = true;
+	}
 }
 
 function index(i, j){
