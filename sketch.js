@@ -13,6 +13,7 @@ function setup(){
 	clr_r = parseInt(urlParams.get('r')) || 0;
 	clr_g = parseInt(urlParams.get('g')) || 100;
 	clr_b = parseInt(urlParams.get('b')) || 255;
+
 	
 	document.getElementById("maze_s").value = size;
 	document.getElementById("clr_r").value = clr_r;
@@ -32,19 +33,21 @@ function setup(){
 
 function hide()
 {
-	document.getElementById("settingsMenu").style.width = "0%";
-	document.getElementById("settingsMenu").style.height = "0px";
-	document.getElementById("settingsMenu").style.borderRadius = "0px";
-	document.getElementById("settingsMenu").style.border = "0px solid black";
+    let settings = document.getElementById("settingsMenu")
+	settings.style.width = "0%";
+	settings.style.height = "0px";
+	settings.style.borderRadius = "0px";
+	settings.style.border = "0px solid black";
 	document.getElementById("hide").disabled = true;
 	document.getElementById("show").disabled = false;
 }
 function show()
 {
-	document.getElementById("settingsMenu").style.width = "35%";
-	document.getElementById("settingsMenu").style.height = "300px";
-	document.getElementById("settingsMenu").style.borderRadius = "20px";
-	document.getElementById("settingsMenu").style.border = "1px solid black";
+    let settings = document.getElementById("settingsMenu")
+	settings.style.width = "35%";
+	settings.style.height = "300px";
+	settings.style.borderRadius = "20px";
+	settings.style.border = "1px solid black";
 	document.getElementById("show").disabled = true;
 	document.getElementById("hide").disabled = false;
 }
@@ -67,6 +70,12 @@ function draw(){
         maze.current = maze.stack.pop();
     }
     if(maze.stack.length <= 0){
+        if(!maze.current.neighbours[0].walls[3]){
+            maze.current.neighbours[0].unhighlight(color(clr_r,clr_g,clr_b, 120));
+        }
+        else{
+            maze.current.neighbours[1].unhighlight(color(clr_r,clr_g,clr_b, 120));
+        }
         noLoop();
 		document.getElementById("solve").disabled = false;
     }
@@ -91,7 +100,7 @@ function settings()
     let r = document.getElementById("clr_r").value;
     let g = document.getElementById("clr_g").value;
     let b = document.getElementById("clr_b").value;
-    size = constrain(size, 5, 80);
+    size = constrain(size, 5, 50);
     r = constrain(r, 0, 255);
     g = constrain(g, 0, 255);
     b = constrain(b, 0, 255);
@@ -114,6 +123,12 @@ class Cell{
         this.visited = false;
         this.neighbours = [];
         this.previous;
+    }
+    unhighlight(clr){
+        console.log(this.x, this.y);
+        noStroke()
+        fill(clr);
+        rect(this.x * maze.size, this.y * maze.size, maze.size, maze.size);
     }
 
     highlight(){ // highlight the current cell
@@ -238,7 +253,7 @@ class Maze{
         }
     }
     heuristic(a, b){
-        let d = dist(a.x, a.y, b.x, b.y);
+        let d = Math.sqrt((a.x - b.x)**2 + (a.y - b.y)**2);
         return d;
     }
 
