@@ -58,7 +58,11 @@ function draw(){
         maze.cells[i].show(color(clr_r,clr_g,clr_b,100));
     }
     maze.current.visited = true;
-    maze.current.highlight();
+    // only highlights if the current cell is not the last one
+    if(!(maze.current.x == maze.start.x + 1 || maze.current.y == maze.start.y + 1)){
+        print(maze.current.x, maze.start.x)
+        maze.current.highlight();
+    }
     let next = maze.current.checkNeighbours();
     if(next){
         next.visited = true;
