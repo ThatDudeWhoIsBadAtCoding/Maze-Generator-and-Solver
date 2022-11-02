@@ -1,5 +1,6 @@
 # Maze-Generator-and-Solver
 A* and Recursive Backtracking magic :D
+
 **SO SORRY FOR NOT COMMENTING THIS, ITS AN OLD PROJECT AND I WAS A DUMB BABY BACK THEN. Maybe ill comment it some day**
 
 **Starting Point is Top-left, ending point is Bottom-Right**
